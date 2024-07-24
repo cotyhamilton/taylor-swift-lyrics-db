@@ -8,7 +8,7 @@ Initial data sourced from [MargauxThw/TS-lyrics](https://github.com/MargauxThw/T
 
 ```ts
 const res = await fetch(
-  "https://cotyhamilton.github.io/taylor-swift-lyrics-db/lyrics.json"
+  "https://cotyhamilton.github.io/taylor-swift-lyrics-db/json/lyrics.json"
 );
 const data = await res.json();
 
