@@ -2,15 +2,29 @@
 
 https://cotyhamilton.github.io/taylor-swift-lyrics-db
 
-Initial data sourced from [MargauxThw/TS-lyrics](https://github.com/MargauxThw/TS-lyrics)
+Data initially sourced from [MargauxThw/TS-lyrics](https://github.com/MargauxThw/TS-lyrics)
 
 ## example
 
+> [!WARNING]
+> To prevent breaking changes from breaking your app\
+> Don't use the hosted json file, copy it to your project from this repo
+
 ```ts
+type Lyrics = {
+  date_generated: string;
+  data: {
+    album: string;
+    song: string;
+    lyric: string;
+    section: string;
+  }[];
+};
+
 const res = await fetch(
   "https://cotyhamilton.github.io/taylor-swift-lyrics-db/json/lyrics.json"
 );
-const data = await res.json();
+const { data } = (await res.json()) as Lyrics;
 
 // albums
 console.log(
@@ -52,7 +66,8 @@ console.log(
 console.log(
   data
     .filter(({ song }) => song === "Delicate")
-    .reduce((prev, curr) => prev + "\n" + curr.lyric, "")
+    .map(({ lyric }) => lyric)
+    .join("\n")
 );
 
 // This ain't for the best
@@ -63,6 +78,10 @@ console.log(
 // But you can make me a drink
 // ...
 ```
+
+## contributing
+
+Update records in [csv/lyrics.csv](./csv/lyrics.csv), rebuild, and make a pull request
 
 ## build
 
