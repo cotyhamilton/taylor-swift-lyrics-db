@@ -16,7 +16,7 @@ async function generateJson() {
     JSON.stringify(
       {
         date_generated: new Date().toISOString(),
-        lyrics: data,
+        data,
       },
       null,
       2,
